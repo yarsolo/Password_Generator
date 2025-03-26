@@ -75,7 +75,7 @@ app.get('/generate-password', async (req, res) => {
     const password = await new Promise((resolve, reject) => {
       const child = exec(
         `python3 ${pythonScript} ${length}`,
-        { timeout: 5000 }, 
+        { timeout: 100000 }, 
         (error, stdout, stderr) => {
           if (error) {
             if (error.killed) reject(new Error('Python script timed out'));
