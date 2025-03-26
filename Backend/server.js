@@ -12,9 +12,9 @@ const app = express();
 //  CORS Configuration
 app.use(cors({
   origin: [
-    'http://localhost:5173', // Vite default
-    'http://127.0.0.1:5173', // Alternative
-    process.env.FRONTEND_URL // Fallback
+    'http://localhost:5173', 
+    'http://127.0.0.1:5173', 
+    process.env.FRONTEND_URL 
   ],
   methods: ['GET', 'POST'],
   credentials: true
@@ -35,8 +35,8 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
-  connectTimeout: 30000, // Valid option (30 seconds)
-  idleTimeout: 60000, // Valid option (60 seconds)
+  connectTimeout: 30000, 
+  idleTimeout: 60000, 
   queueLimit: 0,
   enableKeepAlive: true,
   keepAliveInitialDelay: 10000,
@@ -75,7 +75,7 @@ app.get('/generate-password', async (req, res) => {
     const password = await new Promise((resolve, reject) => {
       const child = exec(
         `python3 ${pythonScript} ${length}`,
-        { timeout: 5000 }, // 5 second timeout
+        { timeout: 5000 }, 
         (error, stdout, stderr) => {
           if (error) {
             if (error.killed) reject(new Error('Python script timed out'));
